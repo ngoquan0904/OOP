@@ -1,7 +1,7 @@
 package com.example.Piece;
 
 import com.example.Game.Board;
-import com.example.Game.GamePvP;
+import com.example.Game.Rule;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -37,7 +37,6 @@ public class Piece {
         gc.setImageSmoothing(true);
         gc.drawImage(image, x, y, Board.SQUARE_SIZE, Board.SQUARE_SIZE);
     }
-
     public int getX(int col){
         return col * Board.SQUARE_SIZE;
     }
@@ -51,7 +50,7 @@ public class Piece {
         return (y +Board.HALF_SQUARE_SIZE) / Board.SQUARE_SIZE;
     }
     public Piece getaffectedP(int targetRow, int targetCol){
-        for(Piece p: GamePvP.simPieces){
+        for(Piece p: Rule.simPieces){
             if(p.row == targetRow && p.col == targetCol && p != this){
                 return p;
             }
@@ -59,7 +58,7 @@ public class Piece {
         return null;
     }
     public int getIndex(){
-        return GamePvP.simPieces.indexOf(this);
+        return Rule.simPieces.indexOf(this);
     }
     public void updatePosition(){
         x = getX(col);
@@ -115,7 +114,7 @@ public class Piece {
     public boolean limitMovement_straight(int targetRow, int targetCol){
         // check left movement
         for(int c= preCol - 1; c >targetCol;c--){
-            for(Piece p: GamePvP.simPieces){
+            for(Piece p: Rule.simPieces){
                 if(p.row == targetRow && p.col == c){
                     affectedP = p;
                     return false;
@@ -124,7 +123,7 @@ public class Piece {
         }
         // check right movement
         for(int c= preCol + 1; c <targetCol;c++){
-            for(Piece p: GamePvP.simPieces){
+            for(Piece p: Rule.simPieces){
                 if(p.row == targetRow && p.col == c){
                     affectedP = p;
                     return false ;
@@ -133,7 +132,7 @@ public class Piece {
         }
         // check up movement
         for(int r= preRow - 1; r >targetRow;r--){
-            for(Piece p: GamePvP.simPieces){
+            for(Piece p: Rule.simPieces){
                 if(p.col == targetCol && p.row == r){
                     affectedP = p;
                     return false;
@@ -142,7 +141,7 @@ public class Piece {
         }
         // check down movement
         for(int r= preRow + 1; r <targetRow;r++){
-            for(Piece p: GamePvP.simPieces){
+            for(Piece p: Rule.simPieces){
                 if(p.col == targetCol && p.row == r){
                     affectedP = p;
                     return false;
@@ -159,7 +158,7 @@ public class Piece {
         for(int i = 1; i < Math.abs(this.preRow - targetRow); i++){
             // check down-right movement
             if(this.preRow < targetRow && this.preCol < targetCol){
-                for(Piece p: GamePvP.simPieces){
+                for(Piece p: Rule.simPieces){
                     if(p.row == this.preRow + i && p.col == this.preCol + i){
                         affectedP = p;
                         return false;
@@ -168,7 +167,7 @@ public class Piece {
             }
             // check down-left movement
             if(this.preRow < targetRow && this.preCol > targetCol){
-                for(Piece p: GamePvP.simPieces){
+                for(Piece p: Rule.simPieces){
                     if(p.row == this.preRow + i && p.col == this.preCol - i){
                         affectedP = p;
                         return false;
@@ -177,7 +176,7 @@ public class Piece {
             }
             // check up-right movement
             if(this.preRow > targetRow && this.preCol < targetCol){
-                for(Piece p: GamePvP.simPieces){
+                for(Piece p: Rule.simPieces){
                     if(p.row == this.preRow - i && p.col == this.preCol + i){
                         affectedP = p;
                         return false;
@@ -186,7 +185,7 @@ public class Piece {
             }
             // check up-left movement
             if(this.preRow > targetRow && this.preCol > targetCol){
-                for(Piece p: GamePvP.simPieces){
+                for(Piece p: Rule.simPieces){
                     if(p.row == this.preRow - i && p.col == this.preCol - i){
                         affectedP = p;
                         return false;

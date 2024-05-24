@@ -1,6 +1,7 @@
 package com.example.Piece;
 
 import com.example.Game.GamePvP;
+import com.example.Game.Puzzle;
 
 public class Bishop extends Piece{
 

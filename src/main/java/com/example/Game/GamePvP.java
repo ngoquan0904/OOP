@@ -20,6 +20,8 @@ import javafx.util.Pair;
 
 public class GamePvP extends Rule{
 	public static String startFen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR";
+    static Stopwatch w_stopwatch = new Stopwatch();
+    static Stopwatch b_stopwatch = new Stopwatch();
     public GamePvP(GraphicsContext gc1 , Mouse mouse, Canvas canvas){
         gc = gc1;
         c = canvas;
@@ -52,6 +54,23 @@ public class GamePvP extends Rule{
             }
         }.start();
     }
+    static void Timing(){
+        if(gameOver || stalemate) return;
+        if(currentColor == WHITE){
+            w_stopwatch.setSeconds(w_stopwatch.getSeconds() + 1);
+            if(w_stopwatch.getSeconds() == 60){
+                w_stopwatch.setMinutes(w_stopwatch.getMinutes() + 1);
+                w_stopwatch.setSeconds(0);
+            }
+        }
+        else{
+            b_stopwatch.setSeconds(b_stopwatch.getSeconds() + 1);
+            if(b_stopwatch.getSeconds() == 60){
+                b_stopwatch.setMinutes(b_stopwatch.getMinutes() + 1);
+                b_stopwatch.setSeconds(0);
+            }
+        }
+    }
     static public void reset(){
         w_stopwatch.reset();
         b_stopwatch.reset();
@@ -70,6 +89,7 @@ public class GamePvP extends Rule{
         copyPieces(pieces, simPieces);
     }
     private void update(){
+    	
         if(isPromo){
             promoting();
         }else if(!gameOver && !stalemate){

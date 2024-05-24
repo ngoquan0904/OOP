@@ -1,6 +1,7 @@
 package com.example;
 
 import com.example.Game.GamePvP;
+import com.example.Game.Puzzle;
 import com.example.Game.Mouse;
 
 import javafx.application.Application;
@@ -39,7 +40,7 @@ public class Main extends Application {
             mouse.y = (int) e.getY();
         });
         canvas.setOnMouseDragged(e -> {
-            mouse.x = (int) e.getX();
+            mouse.x = (int) e.getX();	
             mouse.y = (int) e.getY();
         });
         canvas.setOnMouseReleased(e -> {
@@ -48,7 +49,8 @@ public class Main extends Application {
 
         // Có thể thay đổi game từ đây
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        GamePvP game  = new GamePvP(gc, mouse , canvas);
+        Puzzle game  = new Puzzle(gc, mouse , canvas);
+//        GamePvP game = new GamePvP(gc, mouse, canvas);
         game.gameloop();
         game.board.set_BoardColor(1);            // Set color of the board
         //game.initialize_color(false);            // Set the color of the first player

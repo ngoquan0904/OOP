@@ -32,8 +32,7 @@ public class Rule {
     static Image background = new Image(Rule.class.getResourceAsStream("/background/background.png"));
 
     //StopWatch
-    static Stopwatch w_stopwatch = new Stopwatch();
-    static Stopwatch b_stopwatch = new Stopwatch();
+
 
     //Color
     public static final int WHITE = 0;
@@ -105,23 +104,6 @@ public class Rule {
                         j += Character.getNumericValue(piece) - 1;
                         break;
                 }
-            }
-        }
-    }
-    static void Timing(){
-        if(gameOver || stalemate) return;
-        if(currentColor == WHITE){
-            w_stopwatch.setSeconds(w_stopwatch.getSeconds() + 1);
-            if(w_stopwatch.getSeconds() == 60){
-                w_stopwatch.setMinutes(w_stopwatch.getMinutes() + 1);
-                w_stopwatch.setSeconds(0);
-            }
-        }
-        else{
-            b_stopwatch.setSeconds(b_stopwatch.getSeconds() + 1);
-            if(b_stopwatch.getSeconds() == 60){
-                b_stopwatch.setMinutes(b_stopwatch.getMinutes() + 1);
-                b_stopwatch.setSeconds(0);
             }
         }
     }
